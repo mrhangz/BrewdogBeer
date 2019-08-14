@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		BF3AD37F2303B629003881FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AD37E2303B629003881FB /* AppDelegate.swift */; };
-		BF3AD3812303B629003881FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AD3802303B629003881FB /* ViewController.swift */; };
+		BF3AD3812303B629003881FB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AD3802303B629003881FB /* ListViewController.swift */; };
 		BF3AD3842303B629003881FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3AD3822303B629003881FB /* Main.storyboard */; };
 		BF3AD3862303B629003881FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF3AD3852303B629003881FB /* Assets.xcassets */; };
 		BF3AD3892303B629003881FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3AD3872303B629003881FB /* LaunchScreen.storyboard */; };
 		BF3AD3942303B62A003881FB /* TestCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AD3932303B62A003881FB /* TestCollectionViewTests.swift */; };
 		BF3AD39F2303B62A003881FB /* TestCollectionViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AD39E2303B62A003881FB /* TestCollectionViewUITests.swift */; };
+		BF3AD3AD2303B939003881FB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AD3AC2303B939003881FB /* APIManager.swift */; };
+		BF3AD3AF2303BA3B003881FB /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AD3AE2303BA3B003881FB /* Beer.swift */; };
+		BF3AD3B22303C32E003881FB /* BeerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AD3B02303C32E003881FB /* BeerCollectionViewCell.swift */; };
+		BF3AD3B32303C32E003881FB /* BeerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3AD3B12303C32E003881FB /* BeerCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,7 @@
 /* Begin PBXFileReference section */
 		BF3AD37B2303B629003881FB /* TestCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3AD37E2303B629003881FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BF3AD3802303B629003881FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF3AD3802303B629003881FB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		BF3AD3832303B629003881FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF3AD3852303B629003881FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF3AD3882303B629003881FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +51,10 @@
 		BF3AD39A2303B62A003881FB /* TestCollectionViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestCollectionViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3AD39E2303B62A003881FB /* TestCollectionViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewUITests.swift; sourceTree = "<group>"; };
 		BF3AD3A02303B62A003881FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF3AD3AC2303B939003881FB /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		BF3AD3AE2303BA3B003881FB /* Beer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
+		BF3AD3B02303C32E003881FB /* BeerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF3AD3B12303C32E003881FB /* BeerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeerCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +106,15 @@
 			isa = PBXGroup;
 			children = (
 				BF3AD37E2303B629003881FB /* AppDelegate.swift */,
-				BF3AD3802303B629003881FB /* ViewController.swift */,
+				BF3AD3802303B629003881FB /* ListViewController.swift */,
 				BF3AD3822303B629003881FB /* Main.storyboard */,
 				BF3AD3852303B629003881FB /* Assets.xcassets */,
 				BF3AD3872303B629003881FB /* LaunchScreen.storyboard */,
 				BF3AD38A2303B629003881FB /* Info.plist */,
+				BF3AD3AC2303B939003881FB /* APIManager.swift */,
+				BF3AD3AE2303BA3B003881FB /* Beer.swift */,
+				BF3AD3B02303C32E003881FB /* BeerCollectionViewCell.swift */,
+				BF3AD3B12303C32E003881FB /* BeerCollectionViewCell.xib */,
 			);
 			path = TestCollectionView;
 			sourceTree = "<group>";
@@ -229,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF3AD3B32303C32E003881FB /* BeerCollectionViewCell.xib in Resources */,
 				BF3AD3892303B629003881FB /* LaunchScreen.storyboard in Resources */,
 				BF3AD3862303B629003881FB /* Assets.xcassets in Resources */,
 				BF3AD3842303B629003881FB /* Main.storyboard in Resources */,
@@ -256,8 +269,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF3AD3812303B629003881FB /* ViewController.swift in Sources */,
+				BF3AD3AD2303B939003881FB /* APIManager.swift in Sources */,
+				BF3AD3812303B629003881FB /* ListViewController.swift in Sources */,
+				BF3AD3B22303C32E003881FB /* BeerCollectionViewCell.swift in Sources */,
 				BF3AD37F2303B629003881FB /* AppDelegate.swift in Sources */,
+				BF3AD3AF2303BA3B003881FB /* Beer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
