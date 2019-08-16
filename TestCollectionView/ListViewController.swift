@@ -28,12 +28,24 @@ class ListViewController: UIViewController {
   func getBeers() {
     loadingView.isHidden = false
     let apiManager = APIManager()
-    apiManager.getBeers(urlString: "https://api.punkapi.com/v2/beers?page=\(page)") { [weak self] (beers) in
-      self?.beers.append(contentsOf: beers)
-      DispatchQueue.main.sync {
-        self?.loadingView.isHidden = true
-        self?.collectionView.reloadData()
-        self?.page += 1
+    apiManager.getBeers(urlString: "https://api.punkapi.com/v2/beers?page=\(page)") { [weak self] (result: Result<[Beer], APIError>) in
+      switch result {
+      case .success(let beers):
+        self?.beers.append(contentsOf: beers)
+        DispatchQueue.main.sync {
+          self?.loadingView.isHidden = true
+          self?.collectionView.reloadData()
+          self?.page += 1
+        }
+      case .failure(let error):
+        print(error.localizedDescription)
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive)
+        alert.addAction(action)
+        DispatchQueue.main.sync {
+          self?.loadingView.isHidden = true
+          self?.present(alert, animated: true)
+        }
       }
     }
   }
@@ -54,7 +66,7 @@ extension ListViewController: UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    if indexPath.row == beers.count - 1 {
+    if indexPath.row == beers.count - 1 && loadingView.isHidden {
       getBeers()
     }
   }

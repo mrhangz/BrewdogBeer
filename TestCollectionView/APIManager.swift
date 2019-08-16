@@ -8,8 +8,13 @@
 
 import Foundation
 
+enum APIError: Error {
+  case invalidJSON
+  case invalidData
+}
+
 class APIManager {
-  func getBeers(urlString: String, completion: @escaping ([Beer]) -> Void) {
+  func getBeers<T: Codable>(urlString: String, completion: @escaping (Result<[T], APIError>) -> Void) {
     guard let url = URL(string: urlString) else {
       return
     }
@@ -17,15 +22,15 @@ class APIManager {
     request.httpMethod = "GET"
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let _ = error {
-        print("error")
+        completion(.failure(.invalidData))
       } else if let data = data, let response = response as? HTTPURLResponse {
         if response.statusCode == 200 {
           do {
-            let values = try JSONDecoder().decode([Beer].self, from: data)
+            let values = try JSONDecoder().decode([T].self, from: data)
             print(values)
-            completion(values)
-          } catch (let error) {
-            print(error)
+            completion(.success(values))
+          } catch {
+            completion(.failure(.invalidJSON))
           }
         }
       }
