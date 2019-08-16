@@ -9,7 +9,6 @@
 import UIKit
 
 var imageCache: [String: UIImage] = [:]
-//let imageCache = NSCache<NSString, UIImage>()
 
 class BeerCollectionViewCell: UICollectionViewCell {
   
@@ -17,42 +16,23 @@ class BeerCollectionViewCell: UICollectionViewCell {
   @IBOutlet private var nameLabel: UILabel!
   @IBOutlet private var abvLabel: UILabel!
 
-  func setupUI(beer: Beer) {
-    nameLabel.text = beer.name
-    abvLabel.text = "\(beer.abv)%"
-    if let image = imageCache[beer.imageURL] {
+  func setupUI(viewModel: BeerList.GetBeers.ViewModel.BeerViewModel) {
+    nameLabel.text = viewModel.name
+    abvLabel.text = viewModel.abv
+    if let image = imageCache[viewModel.imageURL] {
       beerImageView.image = image
-    } else if let url = URL(string: beer.imageURL) {
+    } else if let url = URL(string: viewModel.imageURL) {
       DispatchQueue.global().async {
         if let data = try? Data(contentsOf: url) {
           if let image = UIImage(data: data) {
             DispatchQueue.main.sync {
-              imageCache[beer.imageURL] = image
+              imageCache[viewModel.imageURL] = image
               self.beerImageView.image = image
             }
           }
         }
       }
     }
-//    if let url = URL(string: beer.imageURL) {
-//      DispatchQueue.global().async {
-//        if let data = try? Data(contentsOf: url) {
-//          if let image = UIImage(data: data) {
-////            imageCache[beer.imageURL] = image
-//            DispatchQueue.main.sync {
-//              self.beerImageView.image = image
-//            }
-//          }
-//        }
-//      }
-//    }
-//    if let url = URL(string: beer.imageURL) {
-//      if let data = try? Data(contentsOf: url) {
-//        if let image = UIImage(data: data) {
-//          self.beerImageView.image = image
-//        }
-//      }
-//    }
   }
 
 }
