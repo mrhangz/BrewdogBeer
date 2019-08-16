@@ -10,6 +10,7 @@ import UIKit
 
 protocol BeerListPresenterInterface {
   func presentBeers(response: BeerList.GetBeers.Response)
+  func presentSelectedIndex(response: BeerList.SetSelectedIndex.Response)
 }
 
 class BeerListPresenter: BeerListPresenterInterface {
@@ -29,5 +30,10 @@ class BeerListPresenter: BeerListPresenterInterface {
     }
     let viewModel = BeerList.GetBeers.ViewModel(beerViewModels: beerViewModels)
     viewController.displayBeers(viewModel: viewModel)
+  }
+  
+  func presentSelectedIndex(response: BeerList.SetSelectedIndex.Response) {
+    let viewModel = BeerList.SetSelectedIndex.ViewModel()
+    viewController.displaySelectedIndex(viewModel: viewModel)
   }
 }

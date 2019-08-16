@@ -31,7 +31,6 @@ class APIManager {
       } else if let data = data, let response = response as? HTTPURLResponse {
         if response.statusCode == 200 {
           do {
-            sleep(2)
             let values = try JSONDecoder().decode([T].self, from: data)
             print(values)
             completion(.success(values))

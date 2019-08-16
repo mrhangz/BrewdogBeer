@@ -8,8 +8,6 @@
 
 import UIKit
 
-var imageCache: [String: UIImage] = [:]
-
 class BeerCollectionViewCell: UICollectionViewCell {
   
   @IBOutlet private var beerImageView: UIImageView!
@@ -19,19 +17,8 @@ class BeerCollectionViewCell: UICollectionViewCell {
   func setupUI(viewModel: BeerList.GetBeers.ViewModel.BeerViewModel) {
     nameLabel.text = viewModel.name
     abvLabel.text = viewModel.abv
-    if let image = imageCache[viewModel.imageURL] {
-      beerImageView.image = image
-    } else if let url = URL(string: viewModel.imageURL) {
-      DispatchQueue.global().async {
-        if let data = try? Data(contentsOf: url) {
-          if let image = UIImage(data: data) {
-            DispatchQueue.main.sync {
-              imageCache[viewModel.imageURL] = image
-              self.beerImageView.image = image
-            }
-          }
-        }
-      }
+    ImageService().getImage(urlString: viewModel.imageURL) { (image) in
+      self.beerImageView.image = image
     }
   }
 

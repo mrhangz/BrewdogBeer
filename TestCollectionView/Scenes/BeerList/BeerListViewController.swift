@@ -10,6 +10,7 @@ import UIKit
 
 protocol BeerListViewControllerInterface: class {
   func displayBeers(viewModel: BeerList.GetBeers.ViewModel)
+  func displaySelectedIndex(viewModel: BeerList.SetSelectedIndex.ViewModel)
 }
 
 class BeerListViewController: UIViewController, BeerListViewControllerInterface {
@@ -71,6 +72,10 @@ class BeerListViewController: UIViewController, BeerListViewControllerInterface 
     beerViewModels.append(contentsOf: viewModel.beerViewModels)
     collectionView.reloadData()
   }
+  
+  func displaySelectedIndex(viewModel: BeerList.SetSelectedIndex.ViewModel) {
+    router.navigateToBeerDetail()
+  }
 
   // MARK: - Router
 
@@ -107,7 +112,8 @@ extension BeerListViewController: UICollectionViewDataSource {
 
 extension BeerListViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+    let request = BeerList.SetSelectedIndex.Request(index: indexPath.row)
+    interactor.setSelectedIndex(request: request)
   }
 }
 

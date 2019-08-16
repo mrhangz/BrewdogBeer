@@ -25,4 +25,16 @@ struct BeerList {
       var beerViewModels: [BeerViewModel]
     }
   }
+  
+  struct SetSelectedIndex {
+    struct Request {
+      let index: Int
+    }
+    struct Response {
+      
+    }
+    struct ViewModel {
+      
+    }
+  }
 }

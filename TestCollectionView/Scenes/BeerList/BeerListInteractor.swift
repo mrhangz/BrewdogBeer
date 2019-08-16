@@ -10,7 +10,9 @@ import UIKit
 
 protocol BeerListInteractorInterface {
   func getBeers(request: BeerList.GetBeers.Request)
+  func setSelectedIndex(request: BeerList.SetSelectedIndex.Request)
   var beers: [Beer]? { get }
+  var selectedIndex: Int? { get }
 }
 
 class BeerListInteractor: BeerListInteractorInterface {
@@ -18,6 +20,7 @@ class BeerListInteractor: BeerListInteractorInterface {
   var worker: BeerListWorker?
   var beers: [Beer]?
   var page: Int = 1
+  var selectedIndex: Int?
 
   // MARK: - Business logic
 
@@ -33,5 +36,11 @@ class BeerListInteractor: BeerListInteractorInterface {
         print(error) // show error
       }
     }
+  }
+  
+  func setSelectedIndex(request: BeerList.SetSelectedIndex.Request) {
+    selectedIndex = request.index
+    let response = BeerList.SetSelectedIndex.Response()
+    presenter.presentSelectedIndex(response: response)
   }
 }
